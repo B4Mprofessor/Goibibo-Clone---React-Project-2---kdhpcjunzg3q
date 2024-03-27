@@ -1,0 +1,33 @@
+.ant-picker-focused {
+  background: #1e40af !important ;
+  color: white;
+}
+.ant-picker-suffix {
+  color: white !important;
+}
+
+.ant-picker-input input::placeholder {
+  color: white !important;
+}
+
+.ant-pagination-item-active {
+  background-color: rgb(224 242 254) !important;
+}
+
+.ant-radio-button-wrapper::before {
+  display: none !important;
+}
+
+.ant-slider-track{
+    background: coral !important;
+    
+}
+.ant-slider .ant-slider-handle::after{
+    width: 20px !important;
+    height: 20px !important;
+    inset-block-start: -5px !important;
+}
+.ant-slider .ant-slider-handle::before{
+    width: 24px !important;
+    height: 24px !important;
+}
