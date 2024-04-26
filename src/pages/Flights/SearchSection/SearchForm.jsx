@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
-import React, { useReducer, useState, useEffect } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { fetchAirports } from "../../../apis/FetchAirports";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   DatePicker,
   InputField,
@@ -10,6 +9,7 @@ import {
   SwapButton,
   TravellersCount,
 } from "../../../components";
+import { errorToast } from "../../../components/Toasts/toast";
 import { useFlightPassanger } from "../../../context/";
 
 const SearchForm = () => {
@@ -32,25 +32,30 @@ const SearchForm = () => {
   const navigate = useNavigate();
   function handleSubmit(e) {
     const { adult, child, infant } = travel_details?.numbers;
-
-    if(source_location == destination_location){
-      alert("Both airports are the same, Please Select Different Airports");
+    if (source_location == "") {
+      errorToast("Please Enter Source Location");
+      return;
+    }
+    if (destination_location == "") {
+      errorToast("Please Enter Destination Location");
       return;
     }
 
-    const encodedPath = btoa(`${source_location}-${destination_location}--${date_of_journey}--${adult}-${child}-${infant}`)
+    if (source_location == destination_location) {
+      errorToast(
+        "Both airports are the same, Please Select Different Airports"
+      );
+      return;
+    }
+
+    const encodedPath = btoa(
+      `${source_location}-${destination_location}--${date_of_journey}--${adult}-${child}-${infant}`
+    );
 
     if (pathname.includes("flight")) {
-
-
-
-      navigate(
-        `air-${encodedPath}`
-      );
+      navigate(`air-${encodedPath}`);
     } else {
-      navigate(
-        `flight/air-${encodedPath}`
-      );
+      navigate(`flight/air-${encodedPath}`);
     }
   }
 
@@ -113,14 +118,14 @@ const SearchForm = () => {
           />
         </div>
         <DatePicker
-          className=""
+          className="cursor-pointer"
           label="Departure"
           placeholder="Enter date of journey"
           id="date_of_journey"
           min={dayjs(Date.now()).format("YYYY-MM-DD")}
           inputValue={date_of_journey}
           handleInput={(value) => {
-            console.log("handleDate");
+            // console.log("handleDate");
             dispatchJourneyDetails({
               type: "set_date_of_journey",
               payload: { value },

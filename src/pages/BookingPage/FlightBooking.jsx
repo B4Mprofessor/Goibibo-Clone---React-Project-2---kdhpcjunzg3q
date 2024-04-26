@@ -23,11 +23,10 @@ const FlightBooking = () => {
   const {adult,child,flightPrice,date} = encodedPrice; 
   // console.log(encodedPrice)
 
-  let journeyDate = dayjs(date)
-  journeyDate = JSON.stringify(journeyDate);
-  // console.log(journeyDate.slice(1,journeyDate.length-1))
-  journeyDate = journeyDate.slice(1,journeyDate.length-1);
-  
+  let journeyDate = dayjs(date);
+
+  journeyDate = journeyDate.format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
+
   const priceDetails = {
     finalPrice : Math.round((flightPrice * (adult+child))*1.18) ,
     discountedPrice:flightPrice * (adult+child),
@@ -53,16 +52,17 @@ const FlightBooking = () => {
       .then((res) => {
         
           setBookingDetails(res?.data);
-          console.log({booking:res})
+          // console.log({booking:res})
           setTimeout(()=>{
-            console.log("payment");
+            // console.log("payment");
             setPaymentLoading(false);
             setPaymentComplete(true);
           },2000)
         
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
+        throw err;
       });
   }
 
@@ -90,7 +90,7 @@ const FlightBooking = () => {
                 </div>
               </div>
               <div className=" text-light basePrice flex justify-between gap-4 my-1">
-                <div className="tag text-left text-wrap">Hotel Fair</div>
+                <div className="tag text-left text-wrap">Flight Fair</div>
                 <div className="value text-right md:px-4">
                   ₹{priceDetails?.discountedPrice}
                 </div>
@@ -126,7 +126,7 @@ const FlightBooking = () => {
               heading="Credit Card/Debit Card"
               textClass="font-normal p-1"
             >
-              <CreditCard handlePaymentAndBooking={handlePaymentAndBooking} />
+              <CreditCard handlePaymentAndBooking={handlePaymentAndBooking} finalPrice={priceDetails.finalPrice} />
             </CollapseWindow>
           </div>
         </div>

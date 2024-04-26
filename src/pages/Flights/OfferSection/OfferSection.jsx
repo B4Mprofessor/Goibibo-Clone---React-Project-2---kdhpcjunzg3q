@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { fetchOffers } from "../../../apis/FetchOffers";
 import { Carousel } from "../../../components";
 import TabSwitcher from "../../../components/SmallComponents/Tabs/TabSwitcher";
-import Flights from "../Flights";
+
 
 const OfferSection = () => {
   const [offers, setOffers] = useState([]);
@@ -12,7 +12,7 @@ const OfferSection = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log("type:", type);
+    // console.log("type:", type);
     fetchOffers(type).then((res) => {
       setOffers(res);
       setLoading(false);
@@ -29,7 +29,7 @@ const OfferSection = () => {
   }
 
   return (
-    <section className="w-full relative mx-auto bg-white shadow-even rounded-2xl p-2 flex flex-col md:w-[86%] md:p-8 text-center">
+    <section id="offerSection" className="w-full relative mx-auto bg-white shadow-even rounded-2xl p-2 flex flex-col md:w-[86%] md:p-8 text-center">
       <p className="font-bold md:text-2xl text-[rgb(20, 24, 35)]">
         Offers For You
       </p>

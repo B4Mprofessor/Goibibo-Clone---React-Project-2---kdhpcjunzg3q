@@ -1,6 +1,7 @@
 import React from "react";
 import { Carousel } from "antd";
 import {  useNavigate } from "react-router-dom";
+import { MyImageComponent } from "../../components";
 
 const roomImage = {
   Single: {
@@ -39,7 +40,7 @@ const RoomCard = ({ room, images }) => {
     navigate(query);
   }
   
-  console.log();
+ 
 
   return (
     <div className="RoomContainer bg-white border shadow-lg rounded-lg w-full p-2 my-4 flex flex-col md:flex-row md:w-9/12 mx-auto overflow-x-hidden">
@@ -52,20 +53,34 @@ const RoomCard = ({ room, images }) => {
         </h1>
 
         <div className="imageContainer flex max-w-full px-1 gap-0.5">
-          <img
+          {/* <img
             src={roomImage[room?.roomType].image1}
             alt="hotel"
             width={600}
             height={400}
             className="w-1/2 rounded-lg "
+          /> */}
+          <MyImageComponent
+          src={roomImage[room?.roomType].image1}
+          alt="hotel"
+          width={600}
+          height={400}
+          className="w-1/2 rounded-lg "
           />
-          <img
+          <MyImageComponent
+          src={roomImage[room?.roomType].image2}
+          alt="hotel"
+          width={600}
+          height={400}
+          className="w-1/2 rounded-lg "
+          />
+          {/* <img
             src={roomImage[room?.roomType].image2}
             alt="hotel"
             width={600}
             height={400}
             className="w-1/2 rounded-lg "
-          />
+          /> */}
         </div>
 
         <div className="flex m-4 w-full justify-start gap-10">

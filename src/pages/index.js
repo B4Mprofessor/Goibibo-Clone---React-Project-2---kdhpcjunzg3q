@@ -1,4 +1,3 @@
-
 import RootLayout from "./RootLayout";
 import Bus from "./Bus/Bus";
 import Flights from "./Flights/Flights";
@@ -14,21 +13,34 @@ import HotelSearch from "./HotelSearch/HotelSearch";
 import HotelInformation from "./HotelInformation/HotelInformation";
 import HotelPayment from "./HotelPayment/HotelPayment";
 import HotelBookingPage from "./BookingPage/HotelBookingPage";
+import TrainSearch from "./TrainSearch/TrainSearch";
+import TrainBooking from "./BookingPage/TrainBooking";
+import Error404 from "./ErrorPage/Error404";
+import ComingSoon from "./ErrorPage/ComingSoon";
+import BusSearch from "./BusSearch/BusSearch";
+import BusBooking from "./BookingPage/BusBooking";
 
-export {Bus,
-Trains,
-Profile,
-MyTrip,
-Hotels,
-Flights,
-FlightSearch,
-RootLayout,
-ProtectedRoute,
-HotelSearch,
-HotelInformation,
-HotelPayment,
-HotelBookingPage,
-FlightInformation,
-FlightBooking
-}
- 
+
+export {
+  Bus,
+  Trains,
+  Profile,
+  MyTrip,
+  Hotels,
+  Flights,
+  FlightSearch,
+  RootLayout,
+  ProtectedRoute,
+  HotelSearch,
+  HotelInformation,
+  HotelPayment,
+  HotelBookingPage,
+  FlightInformation,
+  FlightBooking,
+  TrainSearch,
+  TrainBooking,
+  BusSearch,
+  Error404,
+  ComingSoon,
+  BusBooking,
+};

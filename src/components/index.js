@@ -15,6 +15,8 @@ import Counter from "./SmallComponents/Counter/Counter";
 import SelectButton from "./SmallComponents/SelectButton/SelectButton";
 import PaymentDone from "./Modals/PaymentDone";
 import PaymentLoading from "./Modals/PaymentLoading";
+import SortLabel from "./SmallComponents/SortLabel/SortLabel";
+import MyImageComponent from "./SmallComponents/MyImageComponents/MyImageComponent";
 export {
   SearchButton,
   DatePicker,
@@ -32,5 +34,7 @@ export {
   Counter,
   SelectButton,
   PaymentDone,
-  PaymentLoading
+  PaymentLoading,
+  SortLabel,
+  MyImageComponent,
 };

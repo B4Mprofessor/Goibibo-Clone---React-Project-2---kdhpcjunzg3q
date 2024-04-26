@@ -1,3 +1,5 @@
+import { Alert } from "antd";
+const { ErrorBoundary } = Alert;
 import React from "react";
 import {
   createBrowserRouter,
@@ -21,13 +23,20 @@ import {
   HotelBookingPage,
   FlightInformation,
   FlightBooking,
+  TrainSearch,
+  TrainBooking,
+  Error404,
+  BusSearch,
+  BusBooking,
 } from "./pages";
+import ErrorElement from "./pages/ErrorPage/ErrorElement";
+import TestPage from "./pages/ErrorPage/ErrorElement";
 import HotelInformation from "./pages/HotelInformation/HotelInformation";
 import LoginSignup from "./pages/Login_Signup/LoginSignup";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
+    <Route path="/" element={<RootLayout />} errorElement={<ErrorElement />}>
       <Route index element={<Flights />} />
       <Route path="/flight" element={<Flights />} />
       <Route path="/flight/:searchQuery" element={<FlightSearch />} />
@@ -35,20 +44,19 @@ const router = createBrowserRouter(
         path="/flight/:searchQuery/:flightData"
         element={
           <ProtectedRoute>
-            <FlightInformation/>
+            <FlightInformation />
           </ProtectedRoute>
         }
       />
 
-<Route
+      <Route
         path="/flight/:searchQuery/:flightData/payment"
         element={
           <ProtectedRoute>
-            <FlightBooking/>
+            <FlightBooking />
           </ProtectedRoute>
         }
       />
-
 
       <Route path="/hotels" element={<Hotels />} />
       <Route
@@ -85,11 +93,53 @@ const router = createBrowserRouter(
       />
 
       <Route path="/trains" element={<Trains />} />
+      <Route
+        path="/trains/searchResults/:departureDate"
+        element={
+          <ProtectedRoute>
+            <TrainSearch />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/trains/booking"
+        element={
+          <ProtectedRoute>
+            <TrainBooking />
+          </ProtectedRoute>
+        }
+      />
       <Route path="/bus" element={<Bus />} />
+      <Route
+        path="/bus/searchResults/:departureDate"
+        element={
+          <ProtectedRoute>
+            <BusSearch />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/bus/booking"
+        element={
+          <ProtectedRoute>
+            <BusBooking />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/mysupport/trips"
+        element={
+          <ProtectedRoute>
+            <MyTrip />
+          </ProtectedRoute>
+        }
+      />
+
       <Route path="/login-signup" element={<LoginSignup />} />
-      <Route path="/mysupport/trips" element={<MyTrip />} />
+
       <Route path="/profile" element={<Profile />} />
-      <Route path="*" element={<Flights />} />
+      <Route path="*" element={<Error404 />} />
     </Route>
   )
 );

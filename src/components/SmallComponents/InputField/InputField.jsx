@@ -6,7 +6,6 @@ import { useState } from "react";
 import { useFlightPassanger } from "../../../context";
 import { useRef } from "react";
 
-
 const InputField = ({
   label,
   placeholder,
@@ -22,9 +21,7 @@ const InputField = ({
   const [airportsList, setAirportsList] = useState(null);
   const [showSuggetion, setShowSuggetion] = useState(false);
 
-  const {journeyDetails} = useFlightPassanger();
-
-
+  const { journeyDetails } = useFlightPassanger();
 
   useEffect(() => {
     fetchAirports().then((res) => {
@@ -49,7 +46,7 @@ const InputField = ({
 
   function handleInput(inputText) {
     setInputValue(inputText);
-    console.log(inputText);
+    // console.log(inputText);
     if (inputText.trim().length > 0) {
       setShowSuggetion(true);
     } else {
@@ -58,7 +55,7 @@ const InputField = ({
   }
 
   function handleSelect(airport) {
-    console.log(airport);
+    // console.log(airport);
     setShowSuggetion(false);
     handleValue(airport?.iata_code);
     setInputValue(`${airport?.city}, (${airport?.iata_code})`);
@@ -71,16 +68,13 @@ const InputField = ({
         type={type}
         id={id}
         autoComplete="off"
-        value={inputValue}        
+        value={inputValue}
         className="w-full relative rounded-lg m-3 focus:outline-none  border-2 border-solid border-slate-200 hover:border-slate-500 focus:border-[rgb(34,118,227)] font-medium text-lg leading-7 text-[rgb(20, 24, 35)] py-3 px-4 md:py-5 md:px-4 "
         onChange={(e) => {
-          console.log(e.target.value);
+          // console.log(e.target.value);
           handleInput(e.target.value);
-          
         }}
       />
-
-      
 
       <label
         htmlFor={id}
@@ -105,13 +99,13 @@ const InputField = ({
                   alt="flight Icon"
                   className="p-2 w-10 h-10"
                 />
-                <p className="font-medium text-slate-700 ">
+                <div className="font-medium text-slate-700 ">
                   {airport?.city}, {airport?.country}{" "}
                   <span>({airport?.iata_code})</span>
                   <p className="font-normal text-xs text-slate-400 ">
                     {airport?.name}
                   </p>
-                </p>
+                </div>
               </li>
             ))
           ) : (
